@@ -29,7 +29,8 @@ public class crudCurso implements ActionListener {
 		this.tfCursoArea = tfCursoArea;
 		this.taCursoLista = taCursoLista;
 		try {
-			this.idCurso = defineIdCursoAtual();
+			int idAux = defineIdCursoAtual();
+			this.idCurso = idAux;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -44,15 +45,15 @@ public class crudCurso implements ActionListener {
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 			String linha = bufferedReader.readLine();
-			String auxLinha = null;
+			String aux = null;
 			while (linha != null) {
-				auxLinha = linha;
+				aux = linha;
 				linha = bufferedReader.readLine();
 			}
-			String[] vetorLinha = auxLinha.split(";");
-			String[] aux = vetorLinha[0].split("C");
-			if (auxLinha != null) {
-				id = Integer.parseInt(aux[0]);
+			if (aux != null) {
+				String[] vetorAux = aux.split(";");
+				String[] vetor = vetorAux[0].split("");
+				id = Integer.parseInt(vetor[1]);
 			}
 			bufferedReader.close();
 			inputStreamReader.close();
@@ -156,7 +157,5 @@ public class crudCurso implements ActionListener {
 		printWriter.close();
 		fileWriter.close();
 	}
-
-	
 
 }

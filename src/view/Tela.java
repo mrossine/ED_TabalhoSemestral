@@ -1,4 +1,4 @@
-package view;
+ package view;
 
 import java.awt.EventQueue;
 
@@ -96,15 +96,15 @@ public class Tela extends JFrame {
 		tabCurso.add(lblCursoTitulo);
 		
 		JButton btnCursoBuscar = new JButton("Buscar");
-		btnCursoBuscar.setBounds(309, 203, 118, 23);
+		btnCursoBuscar.setBounds(188, 203, 95, 23);
 		tabCurso.add(btnCursoBuscar);
 		
 		JButton btnCursoCadastrar = new JButton("Cadastrar");
-		btnCursoCadastrar.setBounds(452, 203, 118, 23);
+		btnCursoCadastrar.setBounds(281, 203, 95, 23);
 		tabCurso.add(btnCursoCadastrar);
 		
 		JScrollPane spCursoLista = new JScrollPane();
-		spCursoLista.setBounds(10, 237, 579, 143);
+		spCursoLista.setBounds(10, 237, 567, 143);
 		tabCurso.add(spCursoLista);
 		
 		JTextArea taCursoLista = new JTextArea();
@@ -168,15 +168,15 @@ public class Tela extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnDisciplinaCadastrar.setBounds(447, 61, 106, 46);
+		btnDisciplinaCadastrar.setBounds(447, 49, 106, 46);
 		tabDisciplina.add(btnDisciplinaCadastrar);
 		
 		JButton btnDisciplinaBuscar = new JButton("Buscar");
-		btnDisciplinaBuscar.setBounds(447, 136, 106, 46);
+		btnDisciplinaBuscar.setBounds(447, 96, 106, 46);
 		tabDisciplina.add(btnDisciplinaBuscar);
 		
 		JScrollPane spDisciplinaLista = new JScrollPane();
-		spDisciplinaLista.setBounds(10, 235, 579, 145);
+		spDisciplinaLista.setBounds(10, 243, 567, 131);
 		tabDisciplina.add(spDisciplinaLista);
 		
 		JTextArea taDisciplinaLista = new JTextArea();
@@ -225,12 +225,20 @@ public class Tela extends JFrame {
 		tabProfessor.add(tfProfessorArea);
 		
 		JButton btnProfessorBuscar = new JButton("Buscar");
-		btnProfessorBuscar.setBounds(296, 166, 118, 23);
+		btnProfessorBuscar.setBounds(188, 172, 95, 23);
 		tabProfessor.add(btnProfessorBuscar);
 		
 		JButton btnProfessorCadastrar = new JButton("Cadastrar");
-		btnProfessorCadastrar.setBounds(439, 166, 118, 23);
+		btnProfessorCadastrar.setBounds(281, 172, 95, 23);
 		tabProfessor.add(btnProfessorCadastrar);
+		
+		JButton btnProfessorAtualizar = new JButton("Atualizar");
+		btnProfessorAtualizar.setBounds(374, 172, 95, 23);
+		tabProfessor.add(btnProfessorAtualizar);
+		
+		JButton btnProfessorExcluir = new JButton("Excluir");
+		btnProfessorExcluir.setBounds(467, 172, 95, 23);
+		tabProfessor.add(btnProfessorExcluir);
 		
 		JScrollPane spProfessorLista = new JScrollPane();
 		spProfessorLista.setBounds(10, 208, 577, 172);
@@ -277,12 +285,20 @@ public class Tela extends JFrame {
 		tabInscricao.add(tfInscricaoCodProcesso);
 		
 		JButton btnInscricaoBuscar = new JButton("Buscar");
-		btnInscricaoBuscar.setBounds(299, 166, 118, 23);
+		btnInscricaoBuscar.setBounds(188, 166, 95, 23);
 		tabInscricao.add(btnInscricaoBuscar);
 		
 		JButton btnInscricaoCadastrar = new JButton("Cadastrar");
-		btnInscricaoCadastrar.setBounds(442, 166, 118, 23);
+		btnInscricaoCadastrar.setBounds(281, 166, 95, 23);
 		tabInscricao.add(btnInscricaoCadastrar);
+		
+		JButton btnInscricaoAtualizar = new JButton("Atualizar");
+		btnInscricaoAtualizar.setBounds(374, 166, 95, 23);
+		tabInscricao.add(btnInscricaoAtualizar);
+		
+		JButton btnInscricaoExcluir = new JButton("Excluir");
+		btnInscricaoExcluir.setBounds(467, 166, 95, 23);
+		tabInscricao.add(btnInscricaoExcluir);
 		
 		JScrollPane spInscricaoLista = new JScrollPane();
 		spInscricaoLista.setBounds(14, 209, 575, 170);
@@ -307,14 +323,32 @@ public class Tela extends JFrame {
 		tfDisciplinaCurso.setBounds(171, 197, 213, 25);
 		tabDisciplina.add(tfDisciplinaCurso);
 		
-		crudCurso crudCurso = new crudCurso(tfCursoNome, tfCursoAreaConhecimento, taCursoLista);
-		crudDisciplinas crudDisc = new crudDisciplinas(tfDisciplinaNome, tfDisciplinaDia, tfDisciplinaHora, tfDisciplinaQuantidadeHora,tfDisciplinaCurso , taDisciplinaLista);
+		JButton btnCursoAtualizar = new JButton("Atualizar");
+		btnCursoAtualizar.setBounds(374, 203, 95, 23);
+		tabCurso.add(btnCursoAtualizar);
 		
+		JButton btnCursoExcluir = new JButton("Excluir");
+		btnCursoExcluir.setBounds(467, 203, 95, 23);
+		tabCurso.add(btnCursoExcluir);
+		
+		JButton btnDisciplinaAtualizar = new JButton("Atualizar");
+		btnDisciplinaAtualizar.setBounds(447, 143, 106, 46);
+		tabDisciplina.add(btnDisciplinaAtualizar);
+		
+		JButton btnDisciplinaExcluir = new JButton("Excluir");
+		btnDisciplinaExcluir.setBounds(447, 190, 106, 46);
+		tabDisciplina.add(btnDisciplinaExcluir);
+		
+		crudCurso crudCurso = new crudCurso(tfCursoNome, tfCursoAreaConhecimento, taCursoLista);
+		crudDisciplinas crudDisc = new crudDisciplinas(tfDisciplinaNome, tfDisciplinaDia, tfDisciplinaHora, tfDisciplinaQuantidadeHora,tfDisciplinaCurso, taDisciplinaLista);
+
 		btnCursoCadastrar.addActionListener(crudCurso);
 		btnCursoBuscar.addActionListener(crudCurso);
+		btnCursoExcluir.addActionListener(crudCurso);
 		
 		btnDisciplinaCadastrar.addActionListener(crudDisc);
 		btnDisciplinaBuscar.addActionListener(crudDisc);
+		btnDisciplinaExcluir.addActionListener(crudDisc);
 		
 		
 	}
