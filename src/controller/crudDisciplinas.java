@@ -44,6 +44,14 @@ public class crudDisciplinas implements ActionListener {
 			e.printStackTrace();
 		}
 	}
+	
+	private void zeraCampos() {
+		tfDisciplinaNome.setText("");
+		tfDisciplinaDia.setText("");
+		tfDisciplinaHora.setText("");
+		tfDisciplinaQuantidadeHora.setText("");
+		tfDisciplinaCurso.setText("");
+	}
 
 	private String determinaCurso(JTextField tfDisciplinaCurso) throws IOException {
 		String curso = null;
@@ -145,11 +153,7 @@ public class crudDisciplinas implements ActionListener {
 				taDisciplinaLista.setText("Disciplina ja foi cadastrada");
 			}
 		}
-		tfDisciplinaNome.setText("");
-		tfDisciplinaDia.setText("");
-		tfDisciplinaHora.setText("");
-		tfDisciplinaQuantidadeHora.setText("");
-		tfDisciplinaCurso.setText("");
+		zeraCampos(); 
 	}
 
 	private void adicionaDisciplinaArquivo(String csvDisciplina) throws IOException {
@@ -184,11 +188,7 @@ public class crudDisciplinas implements ActionListener {
 		} else {
 			taDisciplinaLista.setText("Disciplina nao encontrada");
 		}
-		tfDisciplinaNome.setText("");
-		tfDisciplinaDia.setText("");
-		tfDisciplinaHora.setText("");
-		tfDisciplinaQuantidadeHora.setText("");
-		tfDisciplinaCurso.setText("");
+		zeraCampos();
 	}
 
 	private Disciplina consultaDisciplinaArquivo(Disciplina disciplina) throws IOException {
@@ -229,11 +229,7 @@ public class crudDisciplinas implements ActionListener {
 		} else {
 			taDisciplinaLista.setText("Disciplina nao encontrada");
 		}
-		tfDisciplinaNome.setText("");
-		tfDisciplinaDia.setText("");
-		tfDisciplinaHora.setText("");
-		tfDisciplinaQuantidadeHora.setText("");
-		tfDisciplinaCurso.setText("");
+		zeraCampos();
 	}
 
 	private Disciplina consultaDisciplinaArquivoAtualiza(Disciplina disciplina) throws IOException {
@@ -265,19 +261,23 @@ public class crudDisciplinas implements ActionListener {
 
 	public void excluiDisciplina() throws Exception {
 		Lista<String> lista = new Lista<>();
-		lista = alimentaLista();
-		int tamanho = lista.size();
-		for (int i = 0; i < tamanho; i++) {
-			String[] vetor = lista.get(i).split(";");
-			if (tfDisciplinaNome.getText().equals(vetor[1])) {
-				System.out.println("Teste");
-				remove(lista, i);
-				break;
-			} else if (i == tamanho - 1) {
-				taDisciplinaLista.setText("Disciplina não encontrada");
+		if (tfDisciplinaNome.getText() == null || tfDisciplinaNome.getText() != "") {
+			taDisciplinaLista.setText("Digite o nome da disciplina que será excluída");
+			zeraCampos();
+		} else {
+			lista = alimentaLista();
+			int tamanho = lista.size();
+			for (int i = 0; i < tamanho; i++) {
+				String[] vetor = lista.get(i).split(";");
+				if (tfDisciplinaNome.getText().equals(vetor[1])) {
+					System.out.println("Teste");
+					remove(lista, i);
+					break;
+				} else if (i == tamanho - 1) {
+					taDisciplinaLista.setText("Disciplina não encontrada");
+				}
 			}
 		}
-
 	}
 
 	private void remove(Lista<String> lista, int posicao) throws Exception {
@@ -287,11 +287,11 @@ public class crudDisciplinas implements ActionListener {
 			dir.mkdir();
 		}
 		File arq = new File(path, "disciplinas.csv");
-
 		lista.remove(posicao);
-
 		int tamanho = lista.size();
-
+		for (int i = 0; i < tamanho; i++) {
+			System.out.println(lista.get(i));
+		}
 		if (tamanho != 0) {
 			for (int i = 0; i < tamanho; i++) {
 				if (i == 0) {
@@ -310,8 +310,8 @@ public class crudDisciplinas implements ActionListener {
 					fileWriter.close();
 				}
 			}
-			
 		}
+		zeraCampos();
 	}
 
 	private Lista<String> alimentaLista() throws Exception {
