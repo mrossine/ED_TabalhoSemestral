@@ -31,5 +31,10 @@ public class Professor {
 	public void setQuantidadePontos(int quantidadePontos) {
 		this.quantidadePontos = quantidadePontos;
 	}
+	@Override
+	public String toString() {
+		return nomeProfessor + ";" + cpf + ";" + areaInteresse
+				+ ";" + quantidadePontos;
+	}
 	
 }

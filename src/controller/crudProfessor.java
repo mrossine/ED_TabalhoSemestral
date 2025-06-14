@@ -13,7 +13,6 @@ import java.io.PrintWriter;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import model.Curso;
 import model.Professor;
 
 public class crudProfessor implements ActionListener {
@@ -24,6 +23,11 @@ public class crudProfessor implements ActionListener {
 	private JTextField tfProfessorCpf;
 	private JTextField tfProfessorArea;
 	private JTextArea taProfessorLista;
+	
+	private int quantidadePontos() {
+		int pontos = (int)(Math.random() * 101) ;
+		return pontos;
+	}
 
 	public crudProfessor(JTextField tfProfessorNome, JTextField tfProfessorCpf, JTextField tfProfessorArea,
 			JTextArea taProfessorLista) {
@@ -68,9 +72,11 @@ public class crudProfessor implements ActionListener {
 
 	private void insereProfessor() throws IOException {
 		Professor professor = new Professor();
+		qntdPontos = quantidadePontos();
 		professor.setNomeProfessor(tfProfessorNome.getText());
 		professor.setCpf(tfProfessorCpf.getText());
 		professor.setAreaInteresse(tfProfessorArea.getText());
+		professor.setQuantidadePontos(qntdPontos);
 		Professor aux = consultaProfessorArquivo(professor);
 		if (aux.getAreaInteresse() == null || aux.getAreaInteresse().isEmpty()) {
 			adicionaProfessorArquivo(professor.toString());
@@ -114,6 +120,7 @@ public class crudProfessor implements ActionListener {
 					aux.setNomeProfessor(vetorLinha[0]);
 					aux.setCpf(vetorLinha[1]);
 					aux.setAreaInteresse(vetorLinha[2]);
+					aux.setQuantidadePontos(Integer.parseInt(vetorLinha[3]));
 					break;
 				}
 				linha = bufferedReader.readLine();
