@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.crudCurso;
 import controller.crudDisciplinas;
+import controller.crudProfessor;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
@@ -341,15 +342,21 @@ public class Tela extends JFrame {
 		
 		crudCurso crudCurso = new crudCurso(tfCursoNome, tfCursoAreaConhecimento, taCursoLista);
 		crudDisciplinas crudDisc = new crudDisciplinas(tfDisciplinaNome, tfDisciplinaDia, tfDisciplinaHora, tfDisciplinaQuantidadeHora,tfDisciplinaCurso, taDisciplinaLista);
-
+		crudProfessor crudProfessor = new crudProfessor(tfProfessorNome, tfProfessorCpf, tfProfessorArea, taProfessorLista);
+		
 		btnCursoCadastrar.addActionListener(crudCurso);
 		btnCursoBuscar.addActionListener(crudCurso);
+		btnCursoAtualizar.addActionListener(crudCurso);
 		btnCursoExcluir.addActionListener(crudCurso);
 		
 		btnDisciplinaCadastrar.addActionListener(crudDisc);
 		btnDisciplinaBuscar.addActionListener(crudDisc);
+		btnDisciplinaAtualizar.addActionListener(crudDisc);
 		btnDisciplinaExcluir.addActionListener(crudDisc);
 		
-		
+		btnProfessorCadastrar.addActionListener(crudProfessor);
+		btnProfessorBuscar.addActionListener(crudProfessor);
+		btnProfessorAtualizar.addActionListener(crudProfessor);
+		btnProfessorExcluir.addActionListener(crudProfessor);
 	}
 }

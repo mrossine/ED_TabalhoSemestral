@@ -261,7 +261,8 @@ public class crudDisciplinas implements ActionListener {
 
 	public void excluiDisciplina() throws Exception {
 		Lista<String> lista = new Lista<>();
-		if (tfDisciplinaNome.getText() == null || tfDisciplinaNome.getText() != "") {
+		String verifica = tfDisciplinaNome.getText();
+		if (verifica == null || verifica.equals("")) {
 			taDisciplinaLista.setText("Digite o nome da disciplina que será excluída");
 			zeraCampos();
 		} else {
