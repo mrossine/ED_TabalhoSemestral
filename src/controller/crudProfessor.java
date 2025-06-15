@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import br.edu.fateczl.lista.Lista;
 import model.Professor;
 
 public class crudProfessor implements ActionListener {
@@ -23,9 +24,9 @@ public class crudProfessor implements ActionListener {
 	private JTextField tfProfessorCpf;
 	private JTextField tfProfessorArea;
 	private JTextArea taProfessorLista;
-	
+
 	private int quantidadePontos() {
-		int pontos = (int)(Math.random() * 101) ;
+		int pontos = (int) (Math.random() * 101);
 		return pontos;
 	}
 
@@ -49,24 +50,29 @@ public class crudProfessor implements ActionListener {
 		if (command.equals("Cadastrar")) {
 			try {
 				insereProfessor();
+				zeraCampos();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 		} else if (command.equals("Buscar")) {
-//			try {
-//			} catch (IOException e1) {
-//				e1.printStackTrace();
-//			}
+			try {
+				buscaDisciplina();
+				zeraCampos();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		} else if (command.equals("Atualizar")) {
 //			try {
 //			} catch (IOException e1) {
 //				e1.printStackTrace();
 //			}
 		} else if (command.equals("Excluir")) {
-//			try {
-//			} catch (Exception e1) {
-//				System.err.println(e1.getMessage());
-//			}
+			try {
+				excluiProfessor();
+				zeraCampos();
+			} catch (Exception e1) {
+				System.err.println(e1.getMessage());
+			}
 		}
 	}
 
@@ -83,7 +89,6 @@ public class crudProfessor implements ActionListener {
 		} else {
 			taProfessorLista.setText("Professor já cadastrado");
 		}
-		zeraCampos();
 	}
 
 	private void adicionaProfessorArquivo(String csvProfessor) throws IOException {
@@ -130,5 +135,51 @@ public class crudProfessor implements ActionListener {
 			fileInputStream.close();
 		}
 		return aux;
+	}
+
+	private void buscaDisciplina() throws IOException {
+		Professor professor = new Professor();
+		if (tfProfessorCpf.getText() == null || tfProfessorCpf.getText().equals("")) {
+			taProfessorLista.setText("A consulta deve ser realizada pelo CPF");
+		} else {
+			professor.setCpf(tfProfessorCpf.getText());
+			Professor auxProf = consultaProfessorArquivo(professor);
+			if (auxProf.getNomeProfessor() == null || auxProf.getNomeProfessor().equals("")) {
+				taProfessorLista.setText("Professor não encontrado");
+			} else {
+				taProfessorLista.setText(auxProf.getNomeProfessor() + "\t" + auxProf.getCpf() + "\t"
+						+ auxProf.getAreaInteresse() + "\t" + auxProf.getQuantidadePontos());
+			}
+		}
+	}
+
+	private void excluiProfessor() throws Exception {
+		Lista<String> listaProf = new Lista<>();
+		String cpf = tfProfessorCpf.getText();
+		if (cpf == null || cpf.equals("")) {
+			taProfessorLista.setText("Para excluir o cadastro de um professor é necessário inserir o seu CPF");
+		} else  {
+			listaProf = alimentaLista();
+			int tamanho = listaProf.size();
+			for (int i = 0; i < tamanho; i++) {
+				String[] csv = listaProf.get(i).split(";");
+				if (tfProfessorCpf.getText().equals(csv[1])) {
+					remove(listaProf, i);
+					break;
+				} else if (i == tamanho - 1) {
+					taProfessorLista.setText("Professor não encontrado");
+				}
+			}
+		}
+		
+	}
+
+	private Lista<String> alimentaLista() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private void remove(Lista<String> listaProf, int posicao) {
+		
 	}
 }
